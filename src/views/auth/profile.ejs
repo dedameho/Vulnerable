@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mi Cuenta</h5>
+                <div class="list-group">
+                    <a href="/auth/dashboard" class="list-group-item list-group-item-action">Panel Principal</a>
+                    <a href="/auth/my-courses" class="list-group-item list-group-item-action">Mis Cursos</a>
+                    <a href="/auth/profile" class="list-group-item list-group-item-action active">Mi Perfil</a>
+                    <a href="/auth/settings" class="list-group-item list-group-item-action">Configuración</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <h2>Mi Perfil</h2>
+        
+        <div class="card">
+            <div class="card-body">
+                <form action="/auth/profile" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nombre de Usuario</label>
+                        <!-- Vulnerable a XSS -->
+                        <input type="text" class="form-control" id="username" name="username" value="<%- user %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <!-- Vulnerable a XSS -->
+                        <input type="email" class="form-control" id="email" name="email" value="<%- userEmail %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bio" class="form-label">Biografía</label>
+                        <!-- Vulnerable a XSS -->
+                        <textarea class="form-control" id="bio" name="bio" rows="3"><%- userBio %></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

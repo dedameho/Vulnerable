@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mi Cuenta</h5>
+                <div class="list-group">
+                    <a href="/auth/dashboard" class="list-group-item list-group-item-action">Panel Principal</a>
+                    <a href="/auth/my-courses" class="list-group-item list-group-item-action active">Mis Cursos</a>
+                    <a href="/auth/profile" class="list-group-item list-group-item-action">Mi Perfil</a>
+                    <a href="/auth/settings" class="list-group-item list-group-item-action">Configuración</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <h2>Mis Cursos</h2>
+        
+        <div class="row">
+            <% if (courses && courses.length > 0) { %>
+                <% courses.forEach(course => { %>
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Vulnerable a XSS -->
+                                <h5 class="card-title"><%- course.title %></h5>
+                                <p class="card-text"><%- course.description %></p>
+                                <a href="/courses/<%= course.id %>" class="btn btn-primary">Ver Curso</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col">
+                    <div class="alert alert-info">
+                        No has interactuado con ningún curso todavía.
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

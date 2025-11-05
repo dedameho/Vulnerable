@@ -1,0 +1,40 @@
+<h2>Catálogo de Cursos</h2>
+
+<div class="row mb-4">
+    <div class="col">
+        <form action="/courses/search" method="GET" class="d-flex">
+            <input type="text" name="query" class="form-control me-2" placeholder="Buscar cursos...">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <% courses.forEach(course => { %>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <!-- Vulnerable a XSS: muestra el título sin escape -->
+                    <h5 class="card-title"><%- course.title %></h5>
+                    <!-- Vulnerable a XSS: muestra la descripción sin escape -->
+                    <p class="card-text"><%- course.description %></p>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <strong>Duración:</strong> <%= course.duration %><br>
+                            <strong>Nivel:</strong> <%= course.level %>
+                        </small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="/courses/<%= course.id %>" class="btn btn-primary w-100">Ver Curso</a>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+<% if (courses.length === 0) { %>
+    <div class="alert alert-info">
+        No hay cursos disponibles en este momento.
+    </div>
+<% } %>

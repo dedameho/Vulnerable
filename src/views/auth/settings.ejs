@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mi Cuenta</h5>
+                <div class="list-group">
+                    <a href="/auth/dashboard" class="list-group-item list-group-item-action">Panel Principal</a>
+                    <a href="/auth/my-courses" class="list-group-item list-group-item-action">Mis Cursos</a>
+                    <a href="/auth/profile" class="list-group-item list-group-item-action">Mi Perfil</a>
+                    <a href="/auth/settings" class="list-group-item list-group-item-action active">Configuración</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <h2>Configuración</h2>
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Cambiar Contraseña</h5>
+                <form action="/auth/settings/password" method="POST">
+                    <div class="mb-3">
+                        <label for="currentPassword" class="form-label">Contraseña Actual</label>
+                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="form-label">Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

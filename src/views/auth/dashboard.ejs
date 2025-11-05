@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mi Cuenta</h5>
+                <div class="list-group">
+                    <a href="/auth/dashboard" class="list-group-item list-group-item-action active">Panel Principal</a>
+                    <a href="/auth/my-courses" class="list-group-item list-group-item-action">Mis Cursos</a>
+                    <a href="/auth/profile" class="list-group-item list-group-item-action">Mi Perfil</a>
+                    <a href="/auth/settings" class="list-group-item list-group-item-action">Configuración</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <h2>Panel de Usuario</h2>
+        
+        <!-- Información del usuario (vulnerable a XSS) -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Bienvenido, <%- user %></h5>
+                <p class="card-text">ID de Usuario: <%- userId %></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Cursos Recientes</h5>
+                        <% if (recentCourses && recentCourses.length > 0) { %>
+                            <ul class="list-group list-group-flush">
+                                <% recentCourses.forEach(course => { %>
+                                    <li class="list-group-item">
+                                        <!-- Vulnerable a XSS -->
+                                        <a href="/courses/<%= course.id %>"><%- course.title %></a>
+                                    </li>
+                                <% }); %>
+                            </ul>
+                        <% } else { %>
+                            <p class="card-text text-muted">No has visitado ningún curso recientemente.</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mis Comentarios Recientes</h5>
+                        <% if (recentComments && recentComments.length > 0) { %>
+                            <ul class="list-group list-group-flush">
+                                <% recentComments.forEach(comment => { %>
+                                    <li class="list-group-item">
+                                        <!-- Vulnerable a XSS -->
+                                        <p class="mb-1"><%- comment.content %></p>
+                                        <small class="text-muted">En: <%- comment.course_title %></small>
+                                    </li>
+                                <% }); %>
+                            </ul>
+                        <% } else { %>
+                            <p class="card-text text-muted">No has realizado ningún comentario.</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

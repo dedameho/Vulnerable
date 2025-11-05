@@ -1,0 +1,20 @@
+<div class="jumbotron">
+    <h1 class="display-4">Cursos de Ciberataques</h1>
+    <p class="lead">Aprende sobre diferentes tipos de ciberataques y cómo protegerte de ellos</p>
+</div>
+
+<div class="row mt-4">
+    <% courses.forEach(course => { %>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Vulnerable a XSS: muestra el título sin escape -->
+                    <h5 class="card-title"><%- course.title %></h5>
+                    <!-- Vulnerable a XSS: muestra la descripción sin escape -->
+                    <p class="card-text"><%- course.description %></p>
+                    <a href="/courses/<%= course.id %>" class="btn btn-primary">Ver Curso</a>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
